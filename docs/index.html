@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>zentro-independent-core — status</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+         margin: 2rem auto; max-width: 720px; padding: 0 1rem; color: #1a1a2e; }
+  h1 { font-size: 1.4rem; }
+  .dot { display: inline-block; width: .7em; height: .7em; border-radius: 50%;
+         background: #999; vertical-align: middle; margin-right: .4em; }
+  .on { background: #1db954; }
+  pre { background: #f4f4f8; padding: 1rem; border-radius: 8px; overflow-x: auto; }
+  small { color: #666; }
+</style>
+</head>
+<body>
+<h1><span id="dot" class="dot"></span>zentro-independent-core</h1>
+<p id="summary">Loading status…</p>
+<h2>Recent runs</h2>
+<pre id="runs">…</pre>
+<p><small>Autonomous step engine hosted entirely on GitHub (Actions +
+Pages). State lives in this repository under <code>state/</code>.
+Emergency stop: Actions tab → zentro-independent-core → Disable workflow.</small></p>
+<script>
+fetch("status.json", { cache: "no-store" })
+  .then(r => r.json())
+  .then(s => {
+    document.getElementById("dot").classList.toggle("on", !!s.alive);
+    const last = s.last_run ? `${s.last_run.kind} — ${s.last_run.detail} — ${s.last_run.at}` : "no runs yet";
+    document.getElementById("summary").textContent =
+      `Alive: ${s.alive} · Last run: ${last} · Tasks: ${JSON.stringify(s.tasks)}`;
+    document.getElementById("runs").textContent =
+      (s.recent_runs || []).map(r => `${r.at}  ${r.kind}  ${r.detail}`).join("\n") || "—";
+  })
+  .catch(e => { document.getElementById("summary").textContent = "Status unavailable: " + e; });
+</script>
+</body>
+</html>

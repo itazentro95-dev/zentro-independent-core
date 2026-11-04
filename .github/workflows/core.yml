@@ -1,0 +1,40 @@
+name: zentro-independent-core
+
+# The heartbeat: wakes on a schedule, takes one bounded step, commits
+# its state back. The commit also counts as repo activity, which keeps
+# GitHub's 60-day scheduled-workflow auto-disable from ever triggering.
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: independent-core
+  cancel-in-progress: false
+
+jobs:
+  step:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Take one step
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python3 engine/step.py
+      - name: Commit state
+        run: |
+          git config user.name "zentro-independent-core"
+          git config user.email "actions@github.com"
+          git add state docs/status.json
+          if git diff --cached --quiet; then
+            echo "no state change"
+          else
+            git commit -m "core step: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          fi
