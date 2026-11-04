@@ -1,1 +1,13 @@
-[{"created_at":"2026-11-04T00:00:00Z","id":1,"payload":{"prompt":"Reply with the single word: alive"},"result":null,"status":"queued","type":"ai_prompt","updated_at":"2026-11-04T00:00:00Z"}]
+[
+  {
+    "created_at": "2026-11-04T00:00:00Z",
+    "id": 1,
+    "payload": {
+      "prompt": "Reply with the single word: alive"
+    },
+    "result": "skipped: GROQ_API_KEY not configured",
+    "status": "done",
+    "type": "ai_prompt",
+    "updated_at": "2026-11-04T04:16:10Z"
+  }
+]
