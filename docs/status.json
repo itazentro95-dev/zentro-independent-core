@@ -2,9 +2,9 @@
   "system": "zentro-independent-core",
   "alive": true,
   "last_run": {
-    "at": "2026-11-04T04:16:10Z",
-    "kind": "task",
-    "detail": "task 1 (ai_prompt) done"
+    "at": "2026-11-04T12:21:32Z",
+    "kind": "heartbeat",
+    "detail": "alive, queue empty"
   },
   "tasks": {
     "done": 1
@@ -14,6 +14,11 @@
       "at": "2026-11-04T04:16:10Z",
       "kind": "task",
       "detail": "task 1 (ai_prompt) done"
+    },
+    {
+      "at": "2026-11-04T12:21:32Z",
+      "kind": "heartbeat",
+      "detail": "alive, queue empty"
     }
   ]
 }
