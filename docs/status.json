@@ -2,7 +2,7 @@
   "system": "zentro-independent-core",
   "alive": true,
   "last_run": {
-    "at": "2026-11-07T18:26:39Z",
+    "at": "2026-11-07T22:09:44Z",
     "kind": "heartbeat",
     "detail": "alive, queue empty"
   },
@@ -10,11 +10,6 @@
     "done": 1
   },
   "recent_runs": [
-    {
-      "at": "2026-11-05T15:40:42Z",
-      "kind": "heartbeat",
-      "detail": "alive, queue empty"
-    },
     {
       "at": "2026-11-05T21:34:03Z",
       "kind": "heartbeat",
@@ -57,6 +52,11 @@
     },
     {
       "at": "2026-11-07T18:26:39Z",
+      "kind": "heartbeat",
+      "detail": "alive, queue empty"
+    },
+    {
+      "at": "2026-11-07T22:09:44Z",
       "kind": "heartbeat",
       "detail": "alive, queue empty"
     }
